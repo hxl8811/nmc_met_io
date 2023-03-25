@@ -968,6 +968,7 @@ def read_micaps_14(fname):
 
                 # construct line data type
                 lines = {
+			 "line_num": number,
                     "line_width": line_width, "line_xyz_num": line_xyz_num,
                     "line_xyz": line_xyz, "line_label_num": line_label_num,
                     "line_label": line_label, "line_label_xyz": line_label_xyz}        
@@ -1370,9 +1371,9 @@ def read_micaps_14(fname):
     # read lines symbols with property
     # ======================================================
     plines_symbol = None
-    if "WITHPROP_LINESYMBOLS:" in txt:
+    if "WithProp_LINESYMBOLS:" in txt:
         # get the start position
-        idx = txt.index('WITHPROP_LINESYMBOLS:')
+        idx = txt.index('WithProp_LINESYMBOLS:')
 
         # number of regions
         number = int(txt[idx + 1])
@@ -1416,7 +1417,8 @@ def read_micaps_14(fname):
                 # line shadow
                 shadow = int(txt[idx])
                 plinesym_shadow.append(shadow)
-                idx += 1
+                # idx += 1
+                idx += 2
 
                 # line symbol xyz point number
                 xyz_num = int(txt[idx])
